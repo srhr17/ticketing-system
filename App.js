@@ -1,22 +1,72 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import "./ticketstyles.css";
+import { render } from "react-dom";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      vehicle_no: "",
+      aadhar: "",
+      origin: "Palaghat"
+    };
   }
+  aadharChange = event => {
+    this.setState({ aadhar: event.target.value });
+  };
   render() {
     return (
-      <div className="App">
-        <form method="POST" action="http://localhost:8001/entry">
-          <input type="text" name="aadharno"></input>
-          <input type="submit"></input>
-        </form>
-      </div>
+      <form method="POST" action="http://localhost:8001/entry">
+        <div className="wrapper">
+          <h1 style={{ fontSize: 50 }}>Issue/Delete Ticket</h1>
+          <div className="form-wrapper">
+            <div className="aadhar">
+              <label htmlFor="aadhar" style={{ fontSize: 30, marginLeft: 50 }}>
+                Scan Vehicle No
+              </label>
+              <input
+                type="text"
+                name="vehicle_no"
+                style={{ fontSize: 17 }}
+                onChange={this.aadharChange}
+              />
+            </div>
+            <div className="aadhar">
+              <label htmlFor="aadhar" style={{ fontSize: 30, marginLeft: 50 }}>
+                Scan Aadhar
+              </label>
+              <input
+                type="text"
+                name="aadhar"
+                style={{ fontSize: 17 }}
+                onChange={this.aadharChange}
+              />
+            </div>
+            <div className="aadhar">
+              <label htmlFor="aadhar" style={{ fontSize: 30, marginLeft: 80 }}>
+                Origin
+              </label>
+              <input
+                type="text"
+                name="origin"
+                style={{ fontSize: 17 }}
+                value="Palaghat"
+                disabled
+              />
+            </div>
+            <br></br>
+            <br></br>
+            <button
+              type="submit"
+              style={{ fontSize: 15 }}
+              onClick={this.handleSubmit}
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
     );
   }
 }
-
 export default App;
